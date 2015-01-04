@@ -13,15 +13,14 @@ router.get('/tests/run', function(req, res) {
   		gpio.setup(6, gpio.DIR_OUT, function(){
 			gpio.write(6, true, function(err) {
         		if (err) throw err;
-        		console.log('Written to pin');
+    			
     		});
+    		gpio.write(6, false, function(err) {
+        			if (err) throw err;
+        				
+    		});
+    		res.redirect(path);
 		});
-  		res.redirect(302, path);
-  		gpio.write(6, false, function(err) {
-        		if (err) throw err;
-        		console.log('Written to pin');
-    	});
-    	gpio.destroy();
   	});
 
 });
