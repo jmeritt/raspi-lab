@@ -11,13 +11,16 @@ router.get('/tests/run', function(req, res) {
 	
 	var path = '/images/' + counter++ +'.jpg';
 	exec('raspistill -t 0 -o ./public'+path, function(error, stdout, stderr){
-  		gpio.setup(6, gpio.DIR_OUT, function(){
-			gpio.write(6, true, function(err) {
+  		gpio.setup(31, gpio.DIR_OUT, function(){
+			gpio.write(31, true, function(err) {
         		if (err) throw err;
-    			
+sleep.sleep(4);
+                gpio.write(31, false, function(err) {
+                                if (err) throw err;    	
+		
     		});
     		sleep.sleep(4);
-    		gpio.write(6, false, function(err) {
+    		gpio.write(31, false, function(err) {
         			if (err) throw err;
         				
     		});
