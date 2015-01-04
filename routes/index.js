@@ -12,22 +12,17 @@ router.get('/tests/run', function(req, res) {
 	var path = '/images/' + counter++ +'.jpg';
 	exec('raspistill -t 0 -o ./public'+path, function(error, stdout, stderr){
   		gpio.setup(31, gpio.DIR_OUT, function(){
-			gpio.write(31, true, function(err) {
-        		if (err) throw err;
-sleep.sleep(4);
-                gpio.write(31, false, function(err) {
-                                if (err) throw err;    	
-		
-    		});
-    		sleep.sleep(4);
-    		gpio.write(31, false, function(err) {
-        			if (err) throw err;
-        				
-    		});
-    		res.redirect(path);
-		});
-  	});
+		  gpio.write(31, true, function(err) {
+            if (err) throw err;
+            sleep.sleep(4);
+            gpio.write(31, false, function(err) {
+                if (err) throw err;    	
+		          res.redirect(path);
+    		  });
+    		
+		  });
+  	 });
 
+    });
 });
-
 module.exports = router;
