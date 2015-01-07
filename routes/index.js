@@ -15,7 +15,7 @@ router.get('/tests/run', function(req, res) {
             sleep.sleep(4);
             gpio.write(31, false, function(err) {
                 if (err) throw err;    	
-		          res.redirect(path);
+		          res.send({ testResults: path });
     		  });
     		
 		  });
