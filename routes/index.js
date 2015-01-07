@@ -7,10 +7,8 @@ var sleep = require('sleep')
 var counter = 0;
 /* GET home page. */
 router.get('/tests/run', function(req, res) {
-	//exec('pwd', function(error, stdout, stderr){
-	
 	var path = '/images/' + counter++ +'.jpg';
-	exec('raspistill -t 0 -o ./public'+path, function(error, stdout, stderr){
+	exec('raspistill -n -t 1 -o ./public'+path, function(error, stdout, stderr){
   		gpio.setup(31, gpio.DIR_OUT, function(){
 		  gpio.write(31, true, function(err) {
             if (err) throw err;
